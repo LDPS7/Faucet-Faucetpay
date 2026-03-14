@@ -52,55 +52,6 @@
             z-index: 1;
         }
 
-        /* LIVE BAR */
-        .live-bar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(0,10,25,0.85);
-            border-bottom: 1px solid rgba(59,152,255,0.3);
-            display: flex; align-items: center; justify-content: center;
-            gap: 2rem; padding: 0.4rem 1rem;
-            font-family: 'Space Mono', monospace; font-size: 0.75rem;
-            color: var(--blue-light);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        }
-
-        .live-dot {
-            width: 7px; height: 7px; background: #00ff88;
-            border-radius: 50%; display: inline-block; margin-right: 5px;
-            animation: pulse-dot 1.5s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%,100% { opacity:1; transform:scale(1); }
-            50% { opacity:0.4; transform:scale(0.8); }
-        }
-
-        .live-stat { display: flex; align-items: center; gap: 5px; }
-        .live-stat span { color: #00ff88; font-weight: 700; }
-
-        /* TOASTS */
-        .toast-container {
-            position: fixed; bottom: 1.5rem; left: 1rem;
-            z-index: 200; display: flex; flex-direction: column;
-            gap: 0.5rem; pointer-events: none;
-        }
-
-        .toast {
-            background: rgba(5,20,45,0.92);
-            border: 1px solid rgba(59,152,255,0.4); border-radius: 12px;
-            padding: 10px 14px; color: var(--blue-pale);
-            font-size: 0.8rem; display: flex; align-items: center; gap: 10px;
-            transform: translateX(-120%); opacity: 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-            max-width: 260px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-
-        .toast.show { transform: translateX(0); opacity: 1; }
-        .toast-icon { font-size: 1.1rem; }
-        .toast-text strong { color: #00ff88; }
-
         /* TRACKER PANEL */
         .tracker-panel {
             position: fixed; top: 50%; right: 1rem; transform: translateY(-50%);
@@ -135,7 +86,7 @@
         .main-content {
             position: relative; z-index: 15; flex: 1;
             display: flex; flex-direction: column; align-items: center;
-            padding: 5rem 1rem 3rem; width: 100%;
+            padding: 2rem 1rem 3rem; width: 100%;
             max-width: 1400px; margin: 0 auto;
         }
 
@@ -149,7 +100,6 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        /* Removido o parágrafo com o subtítulo */
 
         /* GRID */
         .mining-grid {
@@ -169,7 +119,6 @@
 
         .phone-card:active { transform: scale(0.98); transition: transform 0.1s; }
 
-        /* Número do quadrado */
         .card-number {
             position: absolute; top: 14px; left: 16px;
             font-family: 'Space Mono', monospace; font-size: 0.9rem;
@@ -179,7 +128,6 @@
             letter-spacing: 0px; font-weight: 700;
         }
 
-        /* Safari fallback */
         .phone-mock {
             width: 100%; background: rgba(8,25,45,0.75);
             border: 1.8px solid rgba(70,150,255,0.25); border-radius: 38px;
@@ -213,7 +161,6 @@
             align-items: center; gap: 10px;
         }
 
-        /* Imagem da mineradora */
         .miner-img {
             width: 88px; height: 88px; margin: 0 auto;
             border-radius: 20px; object-fit: cover;
@@ -242,13 +189,8 @@
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
         }
 
-        .miner-sub {
-            font-size: 0.7rem; color: #9bbdf0;
-            text-transform: uppercase; letter-spacing: 2px; font-family: 'Space Mono', monospace;
-        }
-
         /* BOTÕES */
-        .btn-wrap { width: 100%; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+        .btn-wrap { width: 100%; margin-top: 14px; }
 
         .mining-btn {
             display: inline-block; width: 100%; padding: 14px 10px;
@@ -281,11 +223,10 @@
 
         /* RESPONSIVE */
         @media (max-width: 680px) {
-            .main-content { padding: 4.5rem 0.8rem 2rem; }
+            .main-content { padding: 1.5rem 0.8rem 2rem; }
             .phone-card { flex: 0 1 300px; max-width: 300px; }
             .miner-img { width: 72px; height: 72px; }
             .miner-name { font-size: 1.4rem; }
-            .live-bar { font-size: 0.7rem; gap: 1rem; }
         }
 
         @media (max-width: 380px) { .phone-card { min-width: 240px; } }
@@ -296,14 +237,6 @@
     <div class="bg-overlay"></div>
     <canvas id="particle-canvas"></canvas>
 
-    <div class="live-bar">
-        <div class="live-stat"><span class="live-dot"></span><span id="liveCount">—</span> minerando agora</div>
-        <div class="live-stat">💰 <span id="liveEarned">—</span> USDT sacados hoje</div>
-        <div class="live-stat">🔗 <span id="liveClicks">—</span> cliques hoje</div>
-    </div>
-
-    <div class="toast-container" id="toastContainer"></div>
-
     <div class="tracker-panel" id="trackerPanel">
         <div class="tracker-title">📊 Cliques</div>
         <div class="tracker-list" id="trackerList"></div>
@@ -312,39 +245,35 @@
     <div class="main-content">
         <div class="page-header">
             <h1>Faucet/Faucetpay</h1>
-            <!-- Subtítulo removido conforme solicitado -->
         </div>
 
-        <div class="mining-grid" id="miningGrid">
-            <!-- Os cards serão inseridos aqui pelo JavaScript -->
-        </div>
+        <div class="mining-grid" id="miningGrid"></div>
     </div>
 
     <script>
     (function () {
-        // ===== LISTA DE AFILIADOS (11 links fornecidos) =====
+
+        // ===== LISTA DE AFILIADOS =====
         const affiliateLinks = [
-            { name: "Chill Faucet", url: "https://chillfaucet.in/?r=589", coin: "TRX", sub: "faucet in" },
-            { name: "Earn Crypto WRS", url: "https://earncryptowrs.in/?r=23307", coin: "BTC", sub: "earn crypto" },
-            { name: "Litecoin Farm", url: "https://litecoinfarm.online/index.php?ref=377479", coin: "LTC", sub: "ltc farm" },
-            { name: "Only Faucet", url: "https://onlyfaucet.com/?r=76640", coin: "BTC", sub: "only faucet" },
-            { name: "Bagi", url: "https://bagi.co.in/index.php?ref=121739", coin: "USDT", sub: "bagi coins" },
-            { name: "Claim Crypto", url: "https://claimcrypto.in/?r=2954", coin: "BTC", sub: "claim crypto" },
-            { name: "Auto Faucet", url: "https://autofaucet.moneyrain.top/index.php?ref=2474", coin: "BTC", sub: "auto rain" },
-            { name: "Faucet Earner", url: "https://faucetearner.org/?r=892437350016", coin: "BTC", sub: "faucet earner" },
-            { name: "Litoshi Pay", url: "https://litoshipay.com/?r=1536&xpost=true", coin: "LTC", sub: "litoshi pay" },
-            { name: "99 Faucet", url: "https://99faucet.com/?r=18517", coin: "BTC", sub: "99 faucet" },
-            { name: "TRX Ninja", url: "https://tron-ninja.xyz/r/105324536", coin: "TRX", sub: "tron mine" }
+            { name: "Chill Faucet",     url: "https://chillfaucet.in/?r=589",                                coin: "TRX"  },
+            { name: "Earn Crypto WRS",  url: "https://earncryptowrs.in/?r=23307",                           coin: "BTC"  },
+            { name: "Litecoin Farm",    url: "https://litecoinfarm.online/index.php?ref=377479",             coin: "LTC"  },
+            { name: "Only Faucet",      url: "https://onlyfaucet.com/?r=76640",                             coin: "BTC"  },
+            { name: "Bagi",             url: "https://bagi.co.in/index.php?ref=121739",                     coin: "USDT" },
+            { name: "Claim Crypto",     url: "https://claimcrypto.in/?r=2954",                              coin: "BTC"  },
+            { name: "Auto Faucet",      url: "https://autofaucet.moneyrain.top/index.php?ref=2474",         coin: "BTC"  },
+            { name: "Faucet Earner",    url: "https://faucetearner.org/?r=892437350016",                    coin: "BTC"  },
+            { name: "Litoshi Pay",      url: "https://litoshipay.com/?r=1536&xpost=true",                   coin: "LTC"  },
+            { name: "99 Faucet",        url: "https://99faucet.com/?r=18517",                               coin: "BTC"  },
+            { name: "TRX Ninja",        url: "https://tron-ninja.xyz/r/105324536",                          coin: "TRX"  }
         ];
 
-        // Mapeamento de moedas para ícones (fallback CDN)
         const coinIcons = {
-            'BTC': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/btc.png',
-            'LTC': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/ltc.png',
-            'TRX': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/trx.png',
+            'BTC':  'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/btc.png',
+            'LTC':  'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/ltc.png',
+            'TRX':  'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/trx.png',
             'USDT': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/usdt.png',
-            'PEPE': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/pepe.png',
-            'ETH': 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/eth.png'
+            'ETH':  'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530/128/color/eth.png'
         };
 
         const grid = document.getElementById('miningGrid');
@@ -358,7 +287,6 @@
                     <div class="phone-screen">
                         <img class="miner-img" loading="lazy" decoding="async" src="${coinIcons[link.coin] || coinIcons['BTC']}" onerror="this.src='${coinIcons['BTC']}'" alt="${link.name}">
                         <div class="miner-name">${link.name}</div>
-                        <div class="miner-sub">${link.sub}</div>
                     </div>
                 </div>
                 <div class="btn-wrap">
@@ -370,14 +298,10 @@
 
         // ===== CLICK TRACKER =====
         const clickData = {};
-        var liveBaseClicks = 347 + Math.floor(Math.random()*100);
 
         window.trackClick = function(name){
             clickData[name]=(clickData[name]||0)+1;
             updateTrackerPanel();
-            const total=Object.values(clickData).reduce((a,b)=>a+b,0);
-            const lc=document.getElementById('liveClicks');
-            if(lc) lc.textContent=liveBaseClicks+total;
         };
 
         function updateTrackerPanel(){
@@ -386,48 +310,6 @@
             list.innerHTML=Object.entries(clickData).sort((a,b)=>b[1]-a[1]).slice(0,8)
                 .map(([n,c])=>`<div class="tracker-item"><span>${n}</span><span class="tracker-count">${c}</span></div>`).join('');
         }
-
-        // ===== LIVE BAR =====
-        const liveCountEl=document.getElementById('liveCount');
-        const liveEarnedEl=document.getElementById('liveEarned');
-        const liveClicksEl=document.getElementById('liveClicks');
-        let liveCount=89+Math.floor(Math.random()*60);
-        let liveEarned=1240+Math.floor(Math.random()*300);
-
-        function updateLiveBar(){
-            liveCount+=Math.floor(Math.random()*3)-1;
-            liveCount=Math.max(60,liveCount);
-            if(Math.random()>0.6) liveEarned+=Math.floor(Math.random()*4);
-            if(liveCountEl) liveCountEl.textContent=liveCount;
-            if(liveEarnedEl) liveEarnedEl.textContent=liveEarned.toFixed(1);
-            const t=Object.values(clickData).reduce((a,b)=>a+b,0);
-            if(liveClicksEl) liveClicksEl.textContent=liveBaseClicks+t;
-        }
-        setInterval(updateLiveBar,5000); updateLiveBar();
-
-        // ===== TOASTS =====
-        const names=['Carlos','Maria','João','Ana','Pedro','Luisa','Rafael','Beatriz','Lucas','Fernanda','Diego','Juliana'];
-        const acts=[
-            (n,m)=>`<strong>${n}</strong> sacou ${(Math.random()*15+3).toFixed(1)} USDT via ${m}`,
-            (n,m)=>`<strong>${n}</strong> iniciou mineração em ${m}`,
-            (n,m)=>`<strong>${n}</strong> indicou amigo no ${m}`,
-            (n,m)=>`<strong>${n}</strong> recebeu bônus em ${m}`,
-        ];
-        const tc=document.getElementById('toastContainer');
-
-        function showToast(){
-            const n=names[Math.floor(Math.random()*names.length)];
-            const m=affiliateLinks[Math.floor(Math.random()*affiliateLinks.length)].name;
-            const a=acts[Math.floor(Math.random()*acts.length)];
-            const t=document.createElement('div');
-            t.className='toast';
-            t.innerHTML=`<span class="toast-icon">💸</span><span class="toast-text">${a(n,m)}</span>`;
-            tc.appendChild(t);
-            requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
-            setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(),450); },4000);
-            while(tc.children.length>2) tc.removeChild(tc.firstChild);
-        }
-        setTimeout(showToast,2000); setInterval(showToast,7000);
 
         // ===== PARTÍCULAS DE FUNDO =====
         const canvas=document.getElementById('particle-canvas');
@@ -487,7 +369,7 @@
         window.addEventListener('resize',resizeC);
         resizeC();animate();
 
-        // ===== TRAIL SIMPLES: CAUDA LEVE + PARTÍCULAS QUE SOMEM =====
+        // ===== TRAIL: PARTÍCULAS QUE SOMEM =====
         const tCanvas=document.createElement('canvas');
         tCanvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;';
         document.body.appendChild(tCanvas);
