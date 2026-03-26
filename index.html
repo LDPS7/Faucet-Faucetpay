@@ -52,7 +52,6 @@
             z-index: 1;
         }
 
-        /* TRACKER PANEL */
         .tracker-panel {
             position: fixed; top: 50%; right: 1rem; transform: translateY(-50%);
             z-index: 100; background: rgba(5,15,35,0.9);
@@ -82,7 +81,6 @@
             font-family: 'Space Mono', monospace;
         }
 
-        /* MAIN */
         .main-content {
             position: relative; z-index: 15; flex: 1;
             display: flex; flex-direction: column; align-items: center;
@@ -101,7 +99,6 @@
             background-clip: text;
         }
 
-        /* GRID */
         .mining-grid {
             display: flex; flex-wrap: wrap; justify-content: center;
             gap: 1.8rem 1.2rem; width: 100%;
@@ -189,7 +186,6 @@
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
         }
 
-        /* BOTÕES */
         .btn-wrap { width: 100%; margin-top: 14px; }
 
         .mining-btn {
@@ -221,7 +217,6 @@
         .mining-btn:hover::before { left: 150%; }
         .mining-btn:active { transform: scale(0.98); background: rgba(0,70,150,0.9); }
 
-        /* RESPONSIVE */
         @media (max-width: 680px) {
             .main-content { padding: 1.5rem 0.8rem 2rem; }
             .phone-card { flex: 0 1 300px; max-width: 300px; }
@@ -255,17 +250,20 @@
 
         // ===== LISTA DE AFILIADOS =====
         const affiliateLinks = [
-            { name: "Chill Faucet",     url: "https://chillfaucet.in/?r=589",                                coin: "TRX"  },
-            { name: "Earn Crypto WRS",  url: "https://earncryptowrs.in/?r=23307",                           coin: "BTC"  },
-            { name: "Litecoin Farm",    url: "https://litecoinfarm.online/index.php?ref=377479",             coin: "LTC"  },
-            { name: "Only Faucet",      url: "https://onlyfaucet.com/?r=76640",                             coin: "BTC"  },
-            { name: "Bagi",             url: "https://bagi.co.in/index.php?ref=121739",                     coin: "USDT" },
-            { name: "Claim Crypto",     url: "https://claimcrypto.in/?r=2954",                              coin: "BTC"  },
-            { name: "Auto Faucet",      url: "https://autofaucet.moneyrain.top/index.php?ref=2474",         coin: "BTC"  },
-            { name: "Faucet Earner",    url: "https://faucetearner.org/?r=892437350016",                    coin: "BTC"  },
-            { name: "Litoshi Pay",      url: "https://litoshipay.com/?r=1536&xpost=true",                   coin: "LTC"  },
-            { name: "99 Faucet",        url: "https://99faucet.com/?r=18517",                               coin: "BTC"  },
-            { name: "TRX Ninja",        url: "https://tron-ninja.xyz/r/105324536",                          coin: "TRX"  }
+            { name: "Chill Faucet",       url: "https://chillfaucet.in/?r=589",                                coin: "TRX"  },
+            { name: "Earn Crypto WRS",    url: "https://earncryptowrs.in/?r=23307",                           coin: "BTC"  },
+            { name: "Litecoin Farm",      url: "https://litecoinfarm.online/index.php?ref=377479",             coin: "LTC"  },
+            { name: "Only Faucet",        url: "https://onlyfaucet.com/?r=76640",                             coin: "BTC"  },
+            { name: "Bagi",               url: "https://bagi.co.in/index.php?ref=121739",                     coin: "USDT" },
+            { name: "Claim Crypto",       url: "https://claimcrypto.in/?r=2954",                              coin: "BTC"  },
+            { name: "Auto Faucet",        url: "https://autofaucet.moneyrain.top/index.php?ref=2474",         coin: "BTC"  },
+            { name: "Faucet Earner",      url: "https://faucetearner.org/?r=892437350016",                    coin: "BTC"  },
+            { name: "Litoshi Pay",        url: "https://litoshipay.com/?r=1536&xpost=true",                   coin: "LTC"  },
+            { name: "99 Faucet",          url: "https://99faucet.com/?r=18517",                               coin: "BTC"  },
+            { name: "TRX Ninja",          url: "https://tron-ninja.xyz/r/105324536",                          coin: "TRX"  },
+            { name: "My Faucet",          url: "https://myfaucet.club/ref/lucianoldps",                       coin: "BTC"  },
+            { name: "Crypto Wasteland",   url: "https://cryptowasteland.com/i/2839",                          coin: "BTC"  },
+            { name: "Blood Faucet",       url: "https://bloodfaucet.com/i/8402",                              coin: "BTC"  }
         ];
 
         const coinIcons = {
